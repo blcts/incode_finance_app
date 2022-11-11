@@ -14,26 +14,26 @@ export const App: React.FC = () => {
   useEffect(() => {
     dispatch(SetFeaturesLoadingActionCreator(true));
   });
- return null;
-  // return (
-    // <Routes>
-    //   {
-    //     token
-    //     ?(<>
-    //         <Route path="/" element={<SignIn />}>
-    //           <Route index element={<SignIn />} />
-    //           <Route path="authorization" element={<SignUp />} />
-    //           <Route path="contact" element={<AccountCreated />} />
-    //           <Route path="contact" element={<ResetPassword />} />
-    //           <Route path="contact" element={<EmailToReset />} />
-    //           <Route path="contact" element={<ChangedPassword />} />
-    //           <Route path="*" element={<NoPage />} />
-    //         </Route>
-    //     </>)
-    //     : (<>
-    //     </>)
+  
+  return (
+    <Routes>
+      {
+        token
+        ?(<>
+            <Route path="/" element={<SignIn />}>
+              <Route index element={<SignIn />} />
+              <Route path="authorization" element={<SignUp />} />
+              <Route path="contact" element={<AccountCreated />} />
+              <Route path="contact" element={<ResetPassword />} />
+              <Route path="contact" element={<EmailToReset />} />
+              <Route path="contact" element={<ChangedPassword />} />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+        </>)
+        : (<>
+        </>)
 
-    //   }
-    // </Routes>
-  // );
+      }
+    </Routes>
+  );
 }

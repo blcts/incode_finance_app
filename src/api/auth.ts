@@ -1,24 +1,26 @@
-import { client } from '../components/Auth/fetchClient';
 import { NewUser } from '../types/User'
+import { axios } from './axios';
 
-export const login = (username: string, password: string) => {
-  type AuthToken = {
-    accessToken?: string,
-    refreshToken?: string,
-  };
-  
-  return client.post<AuthToken>('/auth/login', {
-    username: username,
-    password: password,
+type AuthToken = {
+  accessToken: string,
+  refreshToken: string,
+};
+
+export const login = (username: string, password: string): Promise <AuthToken> => {
+  return axios.post('/auth/login', {
+    username,
+    password,
   });
 };
 
-export const refresh = () => {
-  return client.post<string>('/auth/refresh',{});
+export const refresh = (refreshToken: string) => {
+  return axios.post('/auth/refresh',{
+    refreshToken,
+  });
 };
 
 export const register = (newUser: NewUser) => {
-  return client.post<NewUser | number>('/auth/register', {
+  return axios.post<NewUser | number>('/auth/register', {
     username: newUser.username,
     password: newUser.password,
     displayName: newUser.displayName,
@@ -26,5 +28,12 @@ export const register = (newUser: NewUser) => {
 };
 
 export const logout = () => {
-  return client.get(`/auth/logout`);
+  return axios.get(`/auth/logout`);
 };
+
+export const changePassword = (oldPassword: string, newPassword: string) => {
+  return axios.patch(`/auth/changePassword`, {
+    oldPassword,
+    newPassword,
+  });
+}
