@@ -1,13 +1,18 @@
-import { 
+import {
   Button,
-  Input,
   Typography,
-} from '@mui/material';
+} from '@mui/material'
 
-import { FormikProps, useFormik } from 'formik';
-import * as yup from 'yup';
-import { SignInType } from '../../types/SignIn';
-import { AdditionalMessage } from './AdditionalMessage';
+import { FormikProps, useFormik } from 'formik'
+import GirlPNG from '../../images/auth/girl.png'
+import * as yup from 'yup'
+import { SignInType } from '../../types/SignIn'
+import { AdditionalMessage } from './AdditionalMessage'
+import { Container } from '@mui/system'
+import { InputComponent } from '../InputComponent'
+
+import { AuthLayout } from './AuthLayout'
+import { AuthButton } from '../../styles/AuthButton'
 
 export const SignIn: React.FC = () => {
   const formik: FormikProps<SignInType> = useFormik<SignInType>({
@@ -16,67 +21,72 @@ export const SignIn: React.FC = () => {
       password: '',
     },
     validationSchema: yup.object({
-      username: yup.string()
-        .required('Required'),
-      password: yup.string()
-        .required('Required'),
+      username: yup.string().required('Required'),
+      password: yup.string().required('Required'),
     }),
-    onSubmit: values => {
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2))
     },
-  });
+  })
 
   return (
-    <>
-      <Typography variant='h1' color='primary.light'>
-         Sign In 
-      </Typography>
-
+    <AuthLayout
+      title={'Sign In'}
+      alt={'girl'}
+      mainImg={GirlPNG}
+    >
       <form onSubmit={formik.handleSubmit}>
-        <Input 
-          name='username'
-          type='text'
-          placeholder='Example123'
-          onChange={formik.handleChange}
-          value={formik.values.username}
-        />
-        {formik.errors.username && (
-          <Typography variant='p4'>
-            {formik.errors.username}
-          </Typography>
-        )}
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '330px',
+          }}
+        >
+          <InputComponent
+            name="username"
+            type="text"
+            placeholder="Example123"
+            onChange={formik.handleChange}
+            value={formik.values.username}
+          />
+          {formik.errors.username && (
+            <Typography variant="p4">
+              {formik.errors.username}
+            </Typography>
+          )}
 
-        <Input 
-          name='password'
-          type='password'
-          placeholder='***************'
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
-        {formik.errors.password && (
-          <Typography variant='p4'>
-            {formik.errors.password}
-          </Typography>
-        )}
+          <InputComponent
+            name="password"
+            type="password"
+            placeholder="***************"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            isVisiblePass={false}
+          />
+          {formik.errors.password && (
+            <Typography variant="p4">
+              {formik.errors.password}
+            </Typography>
+          )}
 
-        <Button color='success'>
-          Login
-        </Button>
+          <AuthButton>
+            Login
+          </AuthButton>
+        </Container>
       </form>
 
-      <AdditionalMessage 
-        message={'Don’t have account yet?'} 
-        button={'New Account'} 
-        path={'authorization'} 
+      <AdditionalMessage
+        message={'Don’t have account yet?'}
+        button={'New Account'}
+        path={'authorization'}
       />
 
-      <AdditionalMessage 
-        message={'Forgot your password?'} 
-        button={'Reset Password?'} 
-        path={'authorization'} 
-      />
-
-      <
-    </>
+      <AdditionalMessage
+        message={'Forgot your password?'}
+        button={'Reset Password?'}
+        path={'authorization'}
+      /> 
+    </AuthLayout>
   )
 }
