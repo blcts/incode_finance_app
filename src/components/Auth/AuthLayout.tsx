@@ -3,7 +3,6 @@ import { PropsWithChildren } from "react"
 import { AuthCard } from "../../styles/AuthCard"
 import LogoSVG from '../../images/auth/Logo.svg'
 import { Logo } from "../../styles/Logo"
-import { AuthMainImg } from "../../styles/AuthMainImg"
 
 interface Props extends PropsWithChildren { 
   title: string,
