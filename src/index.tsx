@@ -1,6 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './index.css';
+import './styles/reset.scss'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';

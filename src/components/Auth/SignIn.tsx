@@ -1,8 +1,3 @@
-import {
-  Button,
-  Typography,
-} from '@mui/material'
-
 import { FormikProps, useFormik } from 'formik'
 import GirlPNG from '../../images/auth/girl.png'
 import * as yup from 'yup'
@@ -13,19 +8,30 @@ import { InputComponent } from '../InputComponent'
 
 import { AuthLayout } from './AuthLayout'
 import { AuthButton } from '../../styles/AuthButton'
+import { useState } from 'react'
+import { login } from '../../api/auth'
+import { handleLogin } from '../../api/login'
 
 export const SignIn: React.FC = () => {
+  const [isVisiblePass, setIsVisiblePass] = useState(false);
+
   const formik: FormikProps<SignInType> = useFormik<SignInType>({
     initialValues: {
       username: '',
       password: '',
     },
     validationSchema: yup.object({
-      username: yup.string().required('Required'),
-      password: yup.string().required('Required'),
+      username: yup
+        .string()
+        .required('User Name is required'),
+      password: yup
+        .string()
+        .min(4, 'Password is too short')
+        .required('Password is required'),
+
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
+      handleLogin(values);
     },
   })
 
@@ -47,30 +53,32 @@ export const SignIn: React.FC = () => {
             name="username"
             type="text"
             placeholder="Example123"
+            label='User Name'
+            error={Boolean(formik.errors.username && formik.touched.username)}
+            helperText={Boolean(formik.touched.username) && formik.errors.username}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             value={formik.values.username}
           />
-          {formik.errors.username && (
-            <Typography variant="p4">
-              {formik.errors.username}
-            </Typography>
-          )}
 
           <InputComponent
             name="password"
             type="password"
             placeholder="***************"
+            label='Password'
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={Boolean(formik.touched.password && formik.errors.password)}
+            helperText={Boolean(formik.touched.password) && formik.errors.password}
             value={formik.values.password}
-            isVisiblePass={false}
+            isVisiblePass={isVisiblePass}
+            setIsVisiblePass={setIsVisiblePass}
           />
-          {formik.errors.password && (
-            <Typography variant="p4">
-              {formik.errors.password}
-            </Typography>
-          )}
 
-          <AuthButton>
+          <AuthButton
+            type='submit'
+            disabled={Boolean(formik.errors.password)}
+          >
             Login
           </AuthButton>
         </Container>
