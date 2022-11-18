@@ -1,4 +1,9 @@
-import { State, SetFeaturesErrorAction, SetFeaturesIsLoadingAction, Actions } from "./types/featuresType";
+import {
+  State,
+  SetFeaturesErrorAction,
+  SetFeaturesIsLoadingAction,
+  Actions,
+} from './types/featuresType'
 
 const initialState: State = {
   token: null,
@@ -8,51 +13,51 @@ const initialState: State = {
 
 const featuresReducer = (
   state: State = initialState,
-  action: Actions,
+  action: Actions
 ): State => {
   switch (action.type) {
     case 'featuresState/set_features_token':
       return {
         ...state,
         token: action.payload,
-      };
+      }
 
     case 'featuresState/set_features_loading':
       return {
         ...state,
         isLoading: action.payload,
-      };
+      }
 
     case 'featuresState/set_features_error':
       return {
         ...state,
         error: action.payload,
-      };
+      }
 
     default:
-      return state;
-  };
-};
+      return state
+  }
+}
 
-export const SetFeaturesTokenActionCreator = (
-  token: string | null,
-) : SetFeaturesErrorAction => ({
+export const setFeaturesTokenActionCreator = (
+  token: string | null
+): SetFeaturesErrorAction => ({
   type: 'featuresState/set_features_error',
   payload: token,
-});
+})
 
-export const SetFeaturesLoadingActionCreator = (
-  isLoading: boolean,
-) : SetFeaturesIsLoadingAction => ({
+export const setFeaturesLoadingActionCreator = (
+  isLoading: boolean
+): SetFeaturesIsLoadingAction => ({
   type: 'featuresState/set_features_loading',
   payload: isLoading,
-});
+})
 
-export const SetFeaturesErrorActionCreator = (
-  errorMessage: string | null,
-) : SetFeaturesErrorAction => ({
+export const setFeaturesErrorActionCreator = (
+  errorMessage: string | null
+): SetFeaturesErrorAction => ({
   type: 'featuresState/set_features_error',
   payload: errorMessage,
-});
+})
 
-export default featuresReducer;
+export default featuresReducer
