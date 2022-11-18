@@ -1,37 +1,40 @@
-import { User } from '../types/User'
+import { User } from "../types/User";
 
-type RemoveUserAction = { type: 'user/REMOVE' }
+type RemoveUserAction = { type: 'user/REMOVE' };
 
 type SetUserAction = {
-  type: 'user/SET'
-  payload: User
-}
+  type: 'user/SET',
+  payload: User,
+};
 
 const removeUser = (): RemoveUserAction => ({
-  type: 'user/REMOVE',
-})
+  type: 'user/REMOVE'
+});
 
 const setUser = (user: User): SetUserAction => ({
   type: 'user/SET',
   payload: user,
-})
+});
 
-export const actions = { setUser, removeUser }
+export const actions = { setUser, removeUser };
 
-type State = User | null
-type Action = SetUserAction | RemoveUserAction
+type State = User | null;
+type Action = SetUserAction | RemoveUserAction;
 
-const userReducer = (state: State = null, action: Action): State => {
+const userReducer = (
+  state: State = null,
+  action: Action,
+): State => {
   switch (action.type) {
     case 'user/REMOVE':
-      return null
+      return null;
 
     case 'user/SET':
-      return action.payload
+      return action.payload;
 
     default:
-      return state
-  }
-}
+      return state;
+  };
+};
 
-export default userReducer
+export default userReducer;
