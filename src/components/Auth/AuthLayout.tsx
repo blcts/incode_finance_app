@@ -3,10 +3,11 @@ import { PropsWithChildren } from "react"
 import { AuthCard } from "../../styles/AuthCard"
 import LogoSVG from '../../images/auth/Logo.svg'
 import { Logo } from "../../styles/Logo"
+import React from "react"
 
 interface Props extends PropsWithChildren { 
-  title: string,
-  alt: string,
+  title?: string,
+  alt?: string,
   mainImg: string,
 };
 
@@ -18,7 +19,7 @@ export const AuthLayout: React.FC<Props> = (props) => {
   } = props;
   return (
     <AuthCard>
-      <CardContent sx={{ width: '50%' }}>
+      <CardContent sx={{ minWidth: '50%' }}>
         <Logo alt="logo" image={LogoSVG} />
 
         <Typography variant="h1" color="primary.light" sx={{ mb: '32px' }}>
@@ -31,6 +32,9 @@ export const AuthLayout: React.FC<Props> = (props) => {
       <img
         alt={alt}
         src={mainImg}
+        style={{
+          objectFit: 'cover', objectPosition: 'center'
+        }}
       />
     </AuthCard>
   )
