@@ -6,6 +6,7 @@ export const AccountCreated: React.FC= () => {
     <SuccessLayout
       text="Your account successfully created"
       button="Let`s Start"
+      path='/'
     />
   )
 }
