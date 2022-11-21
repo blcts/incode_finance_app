@@ -9,8 +9,8 @@ import { InputComponent } from '../InputComponent'
 import { AuthLayout } from './AuthLayout'
 import { AuthButton } from '../../styles/AuthButton'
 import { useState } from 'react'
-import { login } from '../../api/auth'
-import { handleLogin } from '../../api/login'
+import { handleLogin } from '../../functions/auth/login'
+import React from 'react'
 
 export const SignIn: React.FC = () => {
   const [isVisiblePass, setIsVisiblePass] = useState(false);

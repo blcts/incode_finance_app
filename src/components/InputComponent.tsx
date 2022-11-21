@@ -1,9 +1,14 @@
-import { Button, IconButton, InputAdornment, InputLabel, StandardTextFieldProps } from "@mui/material"
+import {
+  IconButton,
+  InputAdornment,
+  StandardTextFieldProps
+} from "@mui/material"
 import { ReactComponent as EyeOn } from '../images/auth/eye-on.svg';
 import { ReactComponent as EyeOff } from '../images/auth/eye-off.svg';
 import { theme } from "../styles/Theme";
 import { AuthInput } from "../styles/AuthInput";
 import { AuthLabel } from "../styles/AuthLabel";
+import React from "react";
 
 interface Props extends StandardTextFieldProps {
   isVisiblePass?: boolean;
@@ -28,7 +33,7 @@ export const InputComponent: React.FC<Props> = ({
 
   return (
     <>
-      <AuthLabel sx={{typography: 'p3'}}>
+      <AuthLabel sx={{typography: theme.typography.p3}}>
         {label}
       </AuthLabel>
       <AuthInput
