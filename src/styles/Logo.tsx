@@ -11,7 +11,7 @@ export const LogoStyle = styled(CardMedia)(({ theme }) => ({
   top: '48px',
   left: '60px',
   width: '130px',
-  height: '49px'
+  height: '49px',
 }));
 
 export const Logo: React.FC <Props> = (props) => {

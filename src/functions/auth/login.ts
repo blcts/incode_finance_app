@@ -1,5 +1,5 @@
-import { setFeaturesTokenActionCreator } from '../redux/features'
-import { login } from './auth'
+import { setFeaturesTokenActionCreator } from '../../redux/features'
+import { login } from '../../api/auth'
 
 interface Props {
   username: string
