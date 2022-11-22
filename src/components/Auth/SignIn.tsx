@@ -11,13 +11,17 @@ import { AuthButton } from '../../styles/AuthButton'
 import { useState } from 'react'
 import { handleLogin } from '../../functions/auth/login'
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const SignIn: React.FC = () => {
+  const location = useLocation();
   const [isVisiblePass, setIsVisiblePass] = useState(false);
+
+  const registerUsername = location.state && location.state.username;
 
   const formik: FormikProps<SignInType> = useFormik<SignInType>({
     initialValues: {
-      username: '',
+      username: '' || registerUsername ,
       password: '',
     },
     validationSchema: yup.object({

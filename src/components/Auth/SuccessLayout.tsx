@@ -11,15 +11,21 @@ interface Props {
   text: string;
   button: string;
   path: string;
+  username?: string;
 }
 
 export const SuccessLayout: React.FC<Props> = (props) => {
   const navigate = useNavigate();
 
-  const { text, button,path } = props;
+  const {
+    text,
+    button,
+    path,
+    username,
+  } = props;
 
   const handleOnSubmit = () => {
-    navigate(path);
+    navigate(path, { state: { username } } );
   }
 
   return (
@@ -47,9 +53,9 @@ export const SuccessLayout: React.FC<Props> = (props) => {
         </Typography>
 
         <AuthButton
-          type='submit'
+          type='button'
           sx={{ width: '330px' }}
-          onSubmit={handleOnSubmit}
+          onClick={handleOnSubmit}
         >
           {button}
         </AuthButton>
