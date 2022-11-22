@@ -21,7 +21,7 @@ export const SignIn: React.FC = () => {
 
   const formik: FormikProps<SignInType> = useFormik<SignInType>({
     initialValues: {
-      username: '' || registerUsername ,
+      username: registerUsername ? registerUsername : '',
       password: '',
     },
     validationSchema: yup.object({
@@ -91,7 +91,7 @@ export const SignIn: React.FC = () => {
       <AdditionalMessage
         message={'Don’t have account yet?'}
         button={'New Account'}
-        path={'authorization'}
+        path={'/authorization'}
       />
 
       <AdditionalMessage
