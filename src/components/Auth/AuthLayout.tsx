@@ -33,7 +33,10 @@ export const AuthLayout: React.FC<Props> = (props) => {
         alt={alt}
         src={mainImg}
         style={{
-          objectFit: 'cover', objectPosition: 'center'
+          objectFit: 'cover',
+          objectPosition: 'center',
+          width: '50%',
+          height: '100vh'
         }}
       />
     </AuthCard>
