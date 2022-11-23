@@ -6,8 +6,10 @@ import './styles/reset.scss'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
-import { store } from './redux/store';
+import store, { persistor } from './redux/store';
 import { theme } from './styles/Theme';
+import { PersistGate } from 'redux-persist/integration/react';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +19,9 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
+          <PersistGate persistor={persistor}>
             <App />
+          </PersistGate>
         </Provider>
       </ThemeProvider>
     </BrowserRouter>

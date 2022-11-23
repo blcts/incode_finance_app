@@ -1,21 +1,42 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import userReducer from './user';
-import featuresReducer from './features';
+import { combineReducers } from 'redux'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { userReducer } from './fetch'
+import storage from 'redux-persist/lib/storage'
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  persistStore,
+} from 'redux-persist'
+import { configureStore } from '@reduxjs/toolkit'
 
+const persistConfig = {
+  key: 'root',
+  storage: storage,
+  whitelist: ['user'],
+}
 const rootReducer = combineReducers({
   user: userReducer,
-  features: featuresReducer,
-});
+})
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(
-    applyMiddleware(thunk),
-  ),
-);
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+})
+setupListeners(store.dispatch)
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const persistor = persistStore(store)
+export default store
 
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

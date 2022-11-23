@@ -1,5 +1,5 @@
-import { setFeaturesTokenActionCreator } from '../../redux/features'
 import { login } from '../../api/auth'
+import { userTokenAPI } from '../../api/users'
 
 interface Props {
   username: string
@@ -11,7 +11,10 @@ export const handleLogin = async (props: Props) => {
     const token = await login(props.username, props.password)
 
     if (token) {
-      setFeaturesTokenActionCreator(token.accessToken)
+      userTokenAPI(token.accessToken)
     }
-  } catch (err) {}
+    return token.accessToken
+  } catch (err) {
+    throw new Error('You need to register')
+  }
 }
