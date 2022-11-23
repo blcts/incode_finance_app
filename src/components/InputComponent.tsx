@@ -24,7 +24,6 @@ export const InputComponent: React.FC<Props> = ({
   ...props
 }) => {
   
-
   const handleOnClick = () => {
     if (setIsVisiblePass) {
       setIsVisiblePass(prevState => !prevState)

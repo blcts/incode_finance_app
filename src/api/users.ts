@@ -1,13 +1,9 @@
-import axios from "axios";
+import { axios } from './axios'
 
-export const getUserToken = async (token: string) => {
-  const authRequest = await axios.get(`/users`, {
+export const userTokenAPI = async (token: string) => {
+  return await axios.get(`/users/`, {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json;',
-    }
-  });
-
-  return authRequest;
-};
-
+    },
+  })
+}
