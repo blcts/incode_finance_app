@@ -12,8 +12,11 @@ import { useState } from 'react'
 import { handleLogin } from '../../functions/auth/login'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
+import { setToken, setUsername } from '../../redux/fetch'
+import { useDispatch } from 'react-redux'
 
 export const SignIn: React.FC = () => {
+  const dispatch = useDispatch()
   const location = useLocation();
   const [isVisiblePass, setIsVisiblePass] = useState(false);
 
@@ -34,8 +37,15 @@ export const SignIn: React.FC = () => {
         .required('Password is required'),
 
     }),
-    onSubmit: (values) => {
-      handleLogin(values);
+    onSubmit:async (values) => {
+      const token = await handleLogin(values);
+      const username = values.username;
+
+      if (!token) return;
+      if (token) {
+        dispatch(setToken(token))
+        dispatch(setUsername(username))
+      }
     },
   })
 
