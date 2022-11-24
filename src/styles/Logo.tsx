@@ -7,9 +7,9 @@ interface Props extends CardMediaProps {
 }
 
 export const LogoStyle = styled(CardMedia)(({ theme }) => ({
-  position: 'absolute',
-  top: '48px',
-  left: '60px',
+  // position: 'absolute',
+  // top: '48px',
+  // left: '60px',
   width: '130px',
   height: '49px',
 }));
