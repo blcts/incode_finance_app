@@ -7,6 +7,6 @@ export const sidebarRouting: RouteObject[] = [
   // { path: '/analitics', element: <Analitics /> },
   // { path: '/categories', element: <Categories /> },
   // { path: '/settings', element: <Settings /> },
-  // { path: '/*', element: <Dashboard /> },
+  { path: '/*', element: <Dashboard /> },
     
 ];
