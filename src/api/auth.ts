@@ -1,4 +1,4 @@
-import { AuthToken } from '../types/AuthToken'
+import { AccessToken, AuthToken } from '../types/AuthToken'
 import { NewUser } from '../types/User'
 import { axios } from './axios'
 
@@ -12,7 +12,7 @@ export const login = (
   })
 }
 
-export const refresh = (refreshToken: string) => {
+export const refresh = (refreshToken: string): Promise<AccessToken> => {
   return axios.post('/auth/refresh', {
     refreshToken,
   })

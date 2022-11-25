@@ -9,10 +9,10 @@ import { InputComponent } from '../InputComponent'
 import { AuthLayout } from './AuthLayout'
 import { AuthButton } from '../../styles/AuthButton'
 import { useState } from 'react'
-import { handleLogin } from '../../functions/auth/login'
+import { handleLogin } from '../../utils/auth/login'
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { setToken, setUsername } from '../../redux/fetch'
+import { setRefreshToken, setToken, setUsername } from '../../redux/fetch'
 import { useDispatch } from 'react-redux'
 
 export const SignIn: React.FC = () => {
@@ -38,12 +38,13 @@ export const SignIn: React.FC = () => {
 
     }),
     onSubmit:async (values) => {
-      const token = await handleLogin(values);
+      const tokens = await handleLogin(values);
       const username = values.username;
 
-      if (!token) return;
-      if (token) {
-        dispatch(setToken(token))
+      if (!tokens) return;
+      if (tokens) {
+        dispatch(setToken(tokens.accessToken))
+        dispatch(setRefreshToken(tokens.refreshToken))
         dispatch(setUsername(username))
       }
     },

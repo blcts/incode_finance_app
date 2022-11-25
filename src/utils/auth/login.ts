@@ -8,12 +8,12 @@ interface Props {
 
 export const handleLogin = async (props: Props) => {
   try {
-    const token = await login(props.username, props.password)
+    const tokens = await login(props.username, props.password)
 
-    if (token) {
-      userTokenAPI(token.accessToken)
+    if (tokens) {
+      userTokenAPI(tokens.accessToken)
     }
-    return token.accessToken
+    return tokens
   } catch (err) {
     throw new Error('You need to register')
   }

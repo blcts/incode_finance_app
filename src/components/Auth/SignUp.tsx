@@ -8,7 +8,7 @@ import { InputComponent } from '../InputComponent'
 import { AuthLayout } from './AuthLayout'
 import { AuthButton } from '../../styles/AuthButton'
 import { useState } from 'react'
-import { handleRegister } from '../../functions/auth/register'
+import { handleRegister } from '../../utils/auth/register'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Checkbox, Typography } from '@mui/material'
@@ -170,7 +170,7 @@ export const SignUp: React.FC = () => {
               || !isChecked
             )}
           >
-            Sing Up
+            Sign Up
           </AuthButton>
         </Container>
       </form>
