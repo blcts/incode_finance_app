@@ -1,3 +1,4 @@
+import { User } from '../types/User'
 import { axios } from './axios'
 
 export const userTokenAPI = async (token: string) => {
@@ -6,4 +7,10 @@ export const userTokenAPI = async (token: string) => {
       Authorization: `Bearer ${token}`,
     },
   })
+}
+
+export const getUserData = async () => {
+  console.log(axios.defaults.headers)
+
+  return (await axios.get('/users/self')) as User
 }
