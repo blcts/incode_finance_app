@@ -10,7 +10,5 @@ export const userTokenAPI = async (token: string) => {
 }
 
 export const getUserData = async () => {
-  console.log(axios.defaults.headers)
-
   return (await axios.get('/users/self')) as User
 }
