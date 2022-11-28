@@ -21,7 +21,6 @@ export const useAuth = () => {
 
       if (!newToken) return
       setToken(newToken.accessToken)
-      console.log('newToken', newToken)
 
       axios.defaults.headers.common[
         'Authorization'
